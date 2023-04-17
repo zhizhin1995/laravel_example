@@ -1,0 +1,22 @@
+<Directory /project/versions/current>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride Indexes Options=All,MultiViews
+    Order allow,deny
+    allow from all
+</Directory>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$ /public/$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ public/index.php [L]
+</IfModule>
